@@ -1,0 +1,18 @@
+[tool.flet]
+name = "faz launcher"
+product = "Faz Launcher"
+description = "A cross-platform launcher for Five Nights at Freddy's"
+assets = [
+    "assets"
+]
+
+
+[project]
+name = "fazlauncher"
+version = "1.1.0"
+description = "A cross-platform launcher for Five Nights at Freddy's"
+
+dependencies = [
+    "flet>=0.86.5",
+    "requests"
+]
