@@ -8,9 +8,13 @@ on:
         required: true
         default: false
         type: boolean
+permissions:
+  contents: write # Grants GitHub Token permission to create releases
+
 
 jobs:
   build-windows:
+
     runs-on: windows-latest
 
     steps:
