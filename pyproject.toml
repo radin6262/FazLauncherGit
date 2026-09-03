@@ -2,6 +2,7 @@
 name = "faz launcher"
 product = "Faz Launcher"
 description = "A cross-platform launcher for Five Nights at Freddy's"
+icon = "assets/launcher-icon.png"
 assets = [
     "assets"
 ]

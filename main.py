@@ -684,8 +684,8 @@ def main(page: ft.Page):
             ft.Container(expand=True),
             ft.Image(
                 src="assets/images/launcher-title.png",
-                width=300,
-                height=80,
+                width=200,
+                height=200,
                 fit=ft.BoxFit.CONTAIN,
             ),
             ft.Container(
