@@ -38,25 +38,25 @@ GAMES = [
     {
         "id": "fnaf1",
         "name": "Five Nights at Freddy's",
-        "windows_url": "https://abrehamrahi.ir/o/public/bN3sGN75/",
+        "windows_url": "https://github.com/radin6262/FazLauncherSite/raw/refs/heads/main/FiveNightsatFreddys.zip?download=true",
         "image": "images/fnaf1.png",
     },
     {
         "id": "fnaf2",
         "name": "Five Nights at Freddy's 2",
-        "windows_url": "https://s100.picofile.com/d/jatUrak18g2vvRVBOpN0a5c9l3eYtviu4FeWr3sfRfMarUdnuOu8vwbibvVDbeGJHkRXBI0k221j2qntfALjgP7SrPccPRY9sGx7gg/FiveNightsatFreddys2.zip",
+        "windows_url": "https://github.com/radin6262/FazLauncherSite/raw/refs/heads/main/FiveNightsatFreddys2.zip?download=true",
         "image": "images/fnaf2.png",
     },
     {
         "id": "fnaf3",
         "name": "Five Nights at Freddy's 3",
-        "windows_url": "https://s100.picofile.com/d/X4oKa9gTL8CSW0YUX8QGqd7ucYKZ9uPEWAQ1B7spXLfKc3hifrliotpj_N3oLdLGC8NBpqpiGWmRLNXIH8f-nK3WzHVEqe4FDKWKqQ/FiveNightsatFreddys3.zip",
+        "windows_url": "https://github.com/radin6262/FazLauncherSite/raw/refs/heads/main/FiveNightsatFreddys3.zip?download=true",
         "image": "images/fnaf3.png",
     },
     {
         "id": "fnaf4",
         "name": "Five Nights at Freddy's 4",
-        "windows_url": "https://s100.picofile.com/d/PsbfnllqoqJclb0UDNYe9kU30jHesirZ9M6rsBogGidl1C7eqN808Y0YOkMHYEzuwpXwGEY-P6JWxjlh-B_r-MlH4G_xBmYz_uOqRw/FiveNightsatFreddys4.zip",
+        "windows_url": "https://github.com/radin6262/FazLauncherSite/raw/refs/heads/main/FiveNightsatFreddys4.zip?download=true",
         "image": "images/fnaf4.png",
     },
 ]
