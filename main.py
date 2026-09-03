@@ -10,12 +10,12 @@ import zipfile
 import shutil
 import time
 import threading
+from settings import *
 from pathlib import Path
 from proghandler import ProgressHandler
 import loading
 
 import logging
-
 # Disable Flet's noisy logging
 logging.getLogger("flet").setLevel(logging.WARNING)
 
@@ -39,25 +39,25 @@ GAMES = [
         "id": "fnaf1",
         "name": "Five Nights at Freddy's",
         "windows_url": "https://abrehamrahi.ir/o/public/bN3sGN75/",
-        "image": "assets/images/fnaf1.png",
+        "image": "images/fnaf1.png",
     },
     {
         "id": "fnaf2",
         "name": "Five Nights at Freddy's 2",
         "windows_url": "https://s100.picofile.com/d/jatUrak18g2vvRVBOpN0a5c9l3eYtviu4FeWr3sfRfMarUdnuOu8vwbibvVDbeGJHkRXBI0k221j2qntfALjgP7SrPccPRY9sGx7gg/FiveNightsatFreddys2.zip",
-        "image": "assets/images/fnaf2.png",
+        "image": "images/fnaf2.png",
     },
     {
         "id": "fnaf3",
         "name": "Five Nights at Freddy's 3",
         "windows_url": "https://s100.picofile.com/d/X4oKa9gTL8CSW0YUX8QGqd7ucYKZ9uPEWAQ1B7spXLfKc3hifrliotpj_N3oLdLGC8NBpqpiGWmRLNXIH8f-nK3WzHVEqe4FDKWKqQ/FiveNightsatFreddys3.zip",
-        "image": "assets/images/fnaf3.png",
+        "image": "images/fnaf3.png",
     },
     {
         "id": "fnaf4",
         "name": "Five Nights at Freddy's 4",
         "windows_url": "https://s100.picofile.com/d/PsbfnllqoqJclb0UDNYe9kU30jHesirZ9M6rsBogGidl1C7eqN808Y0YOkMHYEzuwpXwGEY-P6JWxjlh-B_r-MlH4G_xBmYz_uOqRw/FiveNightsatFreddys4.zip",
-        "image": "assets/images/fnaf4.png",
+        "image": "images/fnaf4.png",
     },
 ]
 
@@ -264,67 +264,6 @@ class FNAFLauncher:
             return True
         return False
 
-
-def settings_page(page: ft.Page):
-    """Settings page content"""
-    settings_container = ft.Container(
-        expand=True,
-        bgcolor=ft.Colors.BLACK,
-        content=ft.Column(
-            [
-                ft.Container(height=20),
-                ft.Row(
-                    [
-                        ft.Text("Settings", size=32, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
-                    ],
-                    alignment=ft.MainAxisAlignment.CENTER,
-                ),
-                ft.Divider(height=20, color=ft.Colors.GREY_800),
-                ft.Container(
-                    content=ft.Column(
-                        [
-                            ft.Text("Coming soon...", size=20, color=ft.Colors.GREY_400),
-                            ft.Text("Settings will be available in future updates.", size=14, color=ft.Colors.GREY_500),
-                        ],
-                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                        spacing=10,
-                    ),
-                    alignment=ft.Alignment(0, 0),
-                    expand=True,
-                ),
-                ft.Container(height=20),
-                ft.ElevatedButton(
-                    "Back",
-                    on_click=lambda e: page.go("/"),
-                    style=ft.ButtonStyle(
-                        bgcolor=ft.Colors.GREY_800,
-                        color=ft.Colors.WHITE,
-                        padding=ft.Padding(30, 15, 30, 15),
-                    ),
-                    width=150,
-                ),
-                ft.Container(height=20),
-            ],
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-            spacing=5,
-        ),
-    )
-
-    logger.info("CWD: %s", Path.cwd())
-    logger.info("Background exists: %s", Path("assets/images/background.gif").exists())
-
-    background = ft.Container(
-        expand=True,
-        image=ft.DecorationImage(
-            src="images/background.gif",
-            fit=ft.BoxFit.COVER,
-        ),
-        content=ft.Container(
-            expand=True,
-            bgcolor=ft.Colors.with_opacity(0.7, ft.Colors.BLACK),
-            content=settings_container,
-        ),
-    )
 
 
 def main(page: ft.Page):
@@ -664,28 +603,34 @@ def main(page: ft.Page):
                 status_text.color = ft.Colors.GREY_400
                 page.update()
 
-    def open_settings(e):
-        """Open the settings page"""
-        page.go("/settings")
+    async def open_settings(e):
+        await page.push_route("/settings")
 
     def route_change(e):
-        """Handle route changes"""
+        page.views.clear()
+
+        page.views.append(
+            ft.View(
+                route="/",
+                controls=[main_content],
+            )
+        )
+
         if page.route == "/settings":
-            page.clean()
-            page.add(settings_page(page))
-        else:
-            page.clean()
-            page.add(main_content)
+            page.views.append(settings_page(page))
+
         page.update()
+
+    page.on_route_change = route_change
 
     # Build the UI
     header = ft.Row(
         [
             ft.Container(expand=True),
             ft.Image(
-                src="assets/images/launcher-title.png",
-                width=200,
-                height=200,
+                src="images/launcher-title.png",
+                width=120,
+                height=120,
                 fit=ft.BoxFit.CONTAIN,
             ),
             ft.Container(
@@ -761,7 +706,7 @@ def main(page: ft.Page):
     main_content = ft.Container(
         expand=True,
         image=ft.DecorationImage(
-            src="assets/images/background.gif",
+            src="images/background.gif",
             fit=ft.BoxFit.COVER,
         ),
         content=ft.Container(
