@@ -61,6 +61,25 @@ GAMES = [
     },
 ]
 
+# Path pointing to Downloads/FNAF_Launcher/config.json
+CONFIG_DIR = Path.home() / "Downloads" / "FNAF_Launcher"
+CONFIG_FILE = CONFIG_DIR / "config.json"
+
+
+def load_config():
+    if CONFIG_FILE.exists():
+        try:
+            with open(CONFIG_FILE, "r") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+
+# Read the background from the config file, fallback to default if missing
+config = load_config()
+selected_bg = config.get("launcher_background", "bg/background.gif")
+logger.info(f"Current Background: {selected_bg}")
 
 class FNAFLauncher:
     def __init__(self):
@@ -89,6 +108,8 @@ class FNAFLauncher:
         self.stop_download = False  # Flag to stop download
         self.progress = 0.0
         self.status = "Ready"
+
+
 
     def get_local_path(self):
         """Dynamic file path based on current game ID"""
@@ -297,6 +318,7 @@ def main(page: ft.Page):
         spacing=10,
         scroll=ft.ScrollMode.AUTO,
     )
+
 
     def update_file_status():
         if launcher.check_file_exists():
@@ -609,6 +631,18 @@ def main(page: ft.Page):
     def route_change(e):
         page.views.clear()
 
+        # 1. Fetch latest background from config
+        cfg = load_config()
+        current_bg = cfg.get("launcher_background", "bg/background.gif")
+        logger.info(f"Current Background: {current_bg}")
+
+        # 2. Update the background image on main_content
+        main_content.image = ft.DecorationImage(
+            src=current_bg,
+            fit=ft.BoxFit.COVER,
+        )
+
+        # 3. Append main view
         page.views.append(
             ft.View(
                 route="/",
@@ -616,6 +650,7 @@ def main(page: ft.Page):
             )
         )
 
+        # 4. Append settings view on top if route matches
         if page.route == "/settings":
             page.views.append(settings_page(page))
 
@@ -706,7 +741,7 @@ def main(page: ft.Page):
     main_content = ft.Container(
         expand=True,
         image=ft.DecorationImage(
-            src="images/background.gif",
+            src=selected_bg,
             fit=ft.BoxFit.COVER,
         ),
         content=ft.Container(
