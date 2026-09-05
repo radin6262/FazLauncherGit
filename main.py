@@ -13,9 +13,11 @@ import threading
 from settings import *
 from pathlib import Path
 from proghandler import ProgressHandler
+from gallery import *
 import loading
 
 import logging
+
 # Disable Flet's noisy logging
 logging.getLogger("flet").setLevel(logging.WARNING)
 
@@ -628,6 +630,9 @@ def main(page: ft.Page):
     async def open_settings(e):
         await page.push_route("/settings")
 
+    async def open_gallery(e):
+        await page.push_route("/gallery")
+
     def route_change(e):
         page.views.clear()
 
@@ -654,6 +659,10 @@ def main(page: ft.Page):
         if page.route == "/settings":
             page.views.append(settings_page(page))
 
+
+        if page.route == "/gallery":
+            page.views.append(gallery_page(page))
+
         page.update()
 
     page.on_route_change = route_change
@@ -672,6 +681,18 @@ def main(page: ft.Page):
                 content=ft.ElevatedButton(
                     "Settings",
                     on_click=open_settings,
+                    style=ft.ButtonStyle(
+                        bgcolor=ft.Colors.with_opacity(0.3, ft.Colors.WHITE),
+                        color=ft.Colors.WHITE,
+                        padding=ft.Padding(15, 8, 15, 8),
+                    ),
+                ),
+                padding=ft.Padding(0, 0, 20, 0),
+            ),
+            ft.Container(
+                content=ft.ElevatedButton(
+                    "Gallery",
+                    on_click=open_gallery,
                     style=ft.ButtonStyle(
                         bgcolor=ft.Colors.with_opacity(0.3, ft.Colors.WHITE),
                         color=ft.Colors.WHITE,

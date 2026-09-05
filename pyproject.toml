@@ -14,6 +14,7 @@ version = "1.2.0"
 description = "A cross-platform launcher for Five Nights at Freddy's"
 
 dependencies = [
+    "certifi>=2026.7.22",
     "flet>=0.86.5",
-    "requests"
+    "requests",
 ]
