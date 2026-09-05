@@ -10,7 +10,7 @@ assets = [
 
 [project]
 name = "fazlauncher"
-version = "1.2.0"
+version = "1.3.0"
 description = "A cross-platform launcher for Five Nights at Freddy's"
 
 dependencies = [
