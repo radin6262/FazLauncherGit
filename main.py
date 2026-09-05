@@ -299,6 +299,8 @@ def main(page: ft.Page):
 
     launcher = FNAFLauncher()
 
+
+
     # Create spinner
     spinner = ft.ProgressRing(
         visible=False,
@@ -677,30 +679,35 @@ def main(page: ft.Page):
                 height=120,
                 fit=ft.BoxFit.CONTAIN,
             ),
-            ft.Container(
-                content=ft.ElevatedButton(
-                    "Settings",
-                    on_click=open_settings,
-                    style=ft.ButtonStyle(
-                        bgcolor=ft.Colors.with_opacity(0.3, ft.Colors.WHITE),
-                        color=ft.Colors.WHITE,
-                        padding=ft.Padding(15, 8, 15, 8),
+            ft.Row(
+                controls=[
+                    ft.Container(
+                        content=ft.ElevatedButton(
+                            "Settings",
+                            on_click=open_settings,
+                            style=ft.ButtonStyle(
+                                bgcolor=ft.Colors.with_opacity(0.3, ft.Colors.WHITE),
+                                color=ft.Colors.WHITE,
+                                padding=ft.Padding(15, 8, 15, 8),
+                            ),
+                        ),
+                        padding=ft.Padding(0, 0, 10, 0),
                     ),
-                ),
-                padding=ft.Padding(0, 0, 20, 0),
-            ),
-            ft.Container(
-                content=ft.ElevatedButton(
-                    "Gallery",
-                    on_click=open_gallery,
-                    style=ft.ButtonStyle(
-                        bgcolor=ft.Colors.with_opacity(0.3, ft.Colors.WHITE),
-                        color=ft.Colors.WHITE,
-                        padding=ft.Padding(15, 8, 15, 8),
+
+                    ft.Container(
+                        content=ft.ElevatedButton(
+                            "Gallery",
+                            on_click=open_gallery,
+                            style=ft.ButtonStyle(
+                                bgcolor=ft.Colors.with_opacity(0.3, ft.Colors.WHITE),
+                                color=ft.Colors.WHITE,
+                                padding=ft.Padding(15, 8, 15, 8),
+                            ),
+                        ),
+                        padding=ft.Padding(0, 0, 20, 0),
                     ),
-                ),
-                padding=ft.Padding(0, 0, 20, 0),
-            ),
+                ],
+            )
         ],
         alignment=ft.MainAxisAlignment.CENTER,
         vertical_alignment=ft.CrossAxisAlignment.CENTER,
